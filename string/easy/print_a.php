@@ -1,39 +1,27 @@
 <?php 
 
 function printA($height){
-    $mid = intdiv($height, 2);
+
     $a = '';
+    $mid = intdiv($height,2);
 
     for($i = 0; $i < $height; $i++){
-
-        for($s = 0; $s < ($mid - $i); $s++){
-            $a .= " ";
+        $a .= str_repeat(' ', $height - $i - 1);
+        if($i == $mid ){
+            $a .= str_repeat('*', $i * 2 + 1);
         }
+        else{
+            $width = $i * 2 + 1;
 
-        // Width of that row
-        $width = 2 * $i + 1;
-
-        for($j = 1; $j <= $width; $j++){
-
-            // Top peak
-            if ($i == 0) {
-                $a .= "*";
-                break;
-            }
-
-            // Middle bar
-            if($i == $mid){
-                $a .= "*";
-            }
-            // Side stars
-            else if($j == 1 || $j == $width){
-                $a .= "*";
-            }
-            // Hollow space
-            else{
-                $a .= " ";
+            for($j = 0; $j <= $width; $j++){
+                if($j == 0 || $j == $width - 1){
+                    $a .= "*";
+                } else {
+                    $a .= " ";
+                }
             }
         }
+        
 
         $a .= "\n";
     }
@@ -41,4 +29,4 @@ function printA($height){
     return $a;
 }
 
-echo printA(7);
+echo printA(5);
